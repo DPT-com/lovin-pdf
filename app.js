@@ -359,6 +359,10 @@
   }
 
   async function pdfToJpg() {
+    if (window.pdfjsLib && window.pdfjsLib.GlobalWorkerOptions) {
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    }
     if (!window.pdfjsLib) {
       throw new Error("PDF.js load nahi hui. Internet check karke page refresh karein.");
     }
