@@ -108,6 +108,17 @@
           <div class="file-hint">This basic tool does not downsample images or guarantee a smaller file.</div>
         </div>`,
       run: compressPDF
+    },
+    pdfToJpg: {
+      title: "PDF to JPG",
+      description: "Convert each PDF page into a JPG image and download all images in one ZIP file.",
+      fields: `
+        <div>
+          <label class="field-label" for="pdf-to-jpg-file">Choose a PDF</label>
+          <input class="file-input" id="pdf-to-jpg-file" type="file" accept=".pdf,application/pdf" required>
+          <div class="file-hint">For best results on mobile, start with a small PDF.</div>
+        </div>`,
+      run: pdfToJpg
     }
   };
 
@@ -132,7 +143,7 @@
     titleBox.textContent = tool.title;
     descriptionBox.textContent = tool.description;
     formHost.innerHTML = tool.fields + `
-      <button class="run-btn" id="run-tool" type="button">Process and download PDF</button>`;
+      <button class="run-btn" id="run-tool" type="button">${name === "pdf-to-jpg" ? "Convert and download JPGs (ZIP)" : "Process and download PDF"}</button>`;
     setStatus("");
     workspace.hidden = false;
     workspace.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -345,6 +356,69 @@
     const pdf = await loadPDF(file);
     await saveAndDownload(pdf, safeBaseName(file.name) + "_optimized.pdf");
     setStatus("Saved. Note: this tool does not recompress images, so the new PDF may be the same size or larger.", "success");
+  }
+
+  async function pdfToJpg() {
+    if (!window.pdfjsLib) {
+      throw new Error("PDF.js load nahi hui. Internet check karke page refresh karein.");
+    }
+    if (!window.JSZip) {
+      throw new Error("ZIP library load nahi hui. Internet check karke page refresh karein.");
+    }
+
+    const file = getFile("pdf-to-jpg-file");
+    if (file.size > 30 * 1024 * 1024) {
+      throw new Error("Mobile par pehle 30 MB se chhoti PDF try karein.");
+    }
+
+    setStatus("PDF pages render ho rahe hain. Bara document ho to waqt lag sakta hai.");
+    const data = await file.arrayBuffer();
+    const pdf = await window.pdfjsLib.getDocument({ data }).promise;
+    const zip = new window.JSZip();
+
+    try {
+      for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+        setStatus("Page " + pageNumber + " / " + pdf.numPages + " convert ho raha hai...");
+        const page = await pdf.getPage(pageNumber);
+        const viewport = page.getViewport({ scale: 1.5 });
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+        if (!context) throw new Error("Canvas available nahi hai.");
+
+        canvas.width = Math.ceil(viewport.width);
+        canvas.height = Math.ceil(viewport.height);
+
+        await page.render({ canvasContext: context, viewport }).promise;
+
+        const blob = await new Promise((resolve, reject) => {
+          canvas.toBlob(result => {
+            if (result) resolve(result);
+            else reject(new Error("Page " + pageNumber + " ki JPG nahi ban saki."));
+          }, "image/jpeg", 0.88);
+        });
+
+        zip.file("page-" + String(pageNumber).padStart(3, "0") + ".jpg", blob);
+        canvas.width = 0;
+        canvas.height = 0;
+        page.cleanup();
+      }
+
+      setStatus("JPG images ZIP mein pack ho rahi hain...");
+      const zipBlob = await zip.generateAsync({ type: "blob" });
+      clearDownloadUrl();
+      downloadUrl = URL.createObjectURL(zipBlob);
+
+      const link = document.createElement("a");
+      link.href = downloadUrl;
+      link.download = safeBaseName(file.name) + "_jpg_images.zip";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+
+      setStatus("Conversion complete! JPG images ZIP file mein download ho rahi hain.", "success");
+    } finally {
+      await pdf.destroy();
+    }
   }
 
   document.querySelectorAll("[data-tool]").forEach(button => {
