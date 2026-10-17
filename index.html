@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="FreePDF Hub — free browser-based PDF tools. No account required.">
+  <title>FreePDF Hub — Free PDF Tools</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="FreePDF Hub home">
+      <span class="brand-icon">PDF</span>
+      <span>FreePDF <b>Hub</b></span>
+    </a>
+    <a class="header-link" href="#tools">Explore tools ↓</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="pill">FREE ONLINE PDF TOOLS</div>
+      <h1>Your files.<br><span>Your control.</span></h1>
+      <p>Merge, split, rotate and edit PDFs right in your browser. No account needed.</p>
+      <a class="primary-btn" href="#tools">Explore PDF tools <span>→</span></a>
+      <div class="trust-row">
+        <span>✓ No login</span><span>✓ Free to use</span><span>✓ Browser-based processing</span>
+      </div>
+    </section>
+
+    <section class="ad-slot" aria-label="Advertisement">
+      <span>ADVERTISEMENT</span>
+      <p>Advertisement space</p>
+    </section>
+
+    <section id="tools" class="tools-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">SIMPLE. FAST. FREE.</p>
+          <h2>All PDF tools</h2>
+          <p class="muted">Choose a tool to get started.</p>
+        </div>
+        <span class="tool-count">7 TOOLS</span>
+      </div>
+
+      <div class="tool-grid">
+        <button class="tool-card" data-tool="merge">
+          <span class="tool-icon purple">⇄</span><strong>Merge PDF</strong>
+          <span>Combine multiple PDFs into one file.</span><i>Open tool →</i>
+        </button>
+        <button class="tool-card" data-tool="split">
+          <span class="tool-icon blue">✂</span><strong>Split PDF</strong>
+          <span>Extract selected pages into a new PDF.</span><i>Open tool →</i>
+        </button>
+        <button class="tool-card" data-tool="rotate">
+          <span class="tool-icon orange">↻</span><strong>Rotate PDF</strong>
+          <span>Rotate every page of your document.</span><i>Open tool →</i>
+        </button>
+        <button class="tool-card" data-tool="jpg">
+          <span class="tool-icon green">▧</span><strong>JPG to PDF</strong>
+          <span>Turn images into a PDF document.</span><i>Open tool →</i>
+        </button>
+        <button class="tool-card" data-tool="numbers">
+          <span class="tool-icon pink">№</span><strong>Page numbers</strong>
+          <span>Add page numbers to your PDF.</span><i>Open tool →</i>
+        </button>
+        <button class="tool-card" data-tool="watermark">
+          <span class="tool-icon teal">T</span><strong>Watermark PDF</strong>
+          <span>Add a text watermark to every page.</span><i>Open tool →</i>
+        </button>
+        <button class="tool-card" data-tool="compress">
+          <span class="tool-icon yellow">⇩</span><strong>Compress PDF</strong>
+          <span>Re-save a PDF with optimized structure.</span><i>Open tool →</i>
+        </button>
+      </div>
+    </section>
+
+    <section id="workspace" class="workspace" hidden>
+      <div class="workspace-head">
+        <div><p class="eyebrow">PDF WORKSPACE</p><h2 id="workspace-title">Choose a tool</h2></div>
+        <button id="close-tool" class="close-btn" type="button">✕ Close</button>
+      </div>
+      <p id="tool-description" class="muted"></p>
+      <div id="tool-form"></div>
+      <div id="status" class="status" role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="privacy">
+      <div class="privacy-icon">🔒</div>
+      <div>
+        <h2>Privacy comes first</h2>
+        <p>PDF operations run in your browser using a client-side library. Files are not intentionally uploaded to our server. Downloaded files are saved by your browser. The library is loaded from a third-party CDN, so an internet connection is required.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand footer-brand" href="#"><span class="brand-icon">PDF</span><span>FreePDF <b>Hub</b></span></a>
+    <p>Free tools for your everyday documents.</p>
+    <p class="copyright">© <span id="year"></span> FreePDF Hub</p>
+  </footer>
+</body>
+</html>
