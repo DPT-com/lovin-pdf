@@ -1,40 +1,133 @@
+
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101827">
-  <meta name="description" content="FreePDF Hub — free browser-based PDF tools. No account required.">
-  <title>FreePDF Hub — Free PDF Tools</title>
+  <meta name="description" content="Lovin-PDF offers free online PDF tools to merge, split, rotate, convert and edit PDF files. No account required.">
+  <meta name="robots" content="index,follow">
+  <title>Lovin-PDF — Free Online PDF Tools</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- PDF library -->
   <script defer src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
+  <!-- Existing PDF tools logic -->
   <script defer src="app.js"></script>
+
+  <style>
+    /* Advertisement layout */
+    .ad-slot {
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 100%;
+      margin: 20px auto;
+      padding: 12px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .ad-label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      color: #8a94a6;
+    }
+
+    .ad-banner-728,
+    .ad-banner-300 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .ad-banner-728 {
+      min-height: 90px;
+    }
+
+    .ad-banner-300 {
+      min-height: 250px;
+    }
+
+    .ad-banner-728 iframe {
+      max-width: 100%;
+    }
+
+    .ad-slot-bottom {
+      margin-top: 28px;
+      margin-bottom: 28px;
+    }
+
+    @media (max-width: 767px) {
+      .ad-slot {
+        padding: 8px 0;
+      }
+
+      .ad-banner-728 {
+        min-height: 90px;
+      }
+    }
+  </style>
 </head>
+
 <body>
   <header class="topbar">
-    <a class="brand" href="#" aria-label="FreePDF Hub home">
+    <a class="brand" href="#" aria-label="Lovin-PDF home">
       <span class="brand-icon">PDF</span>
-      <span>FreePDF <b>Hub</b></span>
+      <span>Lovin-<b>PDF</b></span>
     </a>
+
     <a class="header-link" href="#tools">Explore tools ↓</a>
   </header>
 
   <main>
+    <!-- Hero section -->
     <section class="hero">
       <div class="pill">FREE ONLINE PDF TOOLS</div>
+
       <h1>Your files.<br><span>Your control.</span></h1>
-      <p>Merge, split, rotate and edit PDFs right in your browser. No account needed.</p>
-      <a class="primary-btn" href="#tools">Explore PDF tools <span>→</span></a>
+
+      <p>
+        Merge, split, rotate and edit PDF files directly in your browser.
+        No account required.
+      </p>
+
+      <a class="primary-btn" href="#tools">
+        Explore PDF tools <span>→</span>
+      </a>
+
       <div class="trust-row">
-        <span>✓ No login</span><span>✓ Free to use</span><span>✓ Browser-based processing</span>
+        <span>✓ No login</span>
+        <span>✓ Free to use</span>
+        <span>✓ Browser-based processing</span>
       </div>
     </section>
 
+    <!-- Adsterra banner 1: 728 x 90 -->
     <section class="ad-slot" aria-label="Advertisement">
-      <span>ADVERTISEMENT</span>
-      <p>Advertisement space</p>
+      <span class="ad-label">ADVERTISEMENT</span>
+
+      <div class="ad-banner-728">
+        <script>
+          window.atOptions = {
+            'key': 'cdc2d807cac09cdbeb6d9a56af824d4c',
+            'format': 'iframe',
+            'height': 90,
+            'width': 728,
+            'params': {}
+          };
+        </script>
+        <script src="https://bauval.org/22/cdc2d807cac09cdbeb6d9a56af824d4c"></script>
+      </div>
     </section>
 
+    <!-- PDF tools -->
     <section id="tools" class="tools-section">
       <div class="section-heading">
         <div>
@@ -42,64 +135,132 @@
           <h2>All PDF tools</h2>
           <p class="muted">Choose a tool to get started.</p>
         </div>
+
         <span class="tool-count">7 TOOLS</span>
       </div>
 
       <div class="tool-grid">
-        <button class="tool-card" data-tool="merge">
-          <span class="tool-icon purple">⇄</span><strong>Merge PDF</strong>
-          <span>Combine multiple PDFs into one file.</span><i>Open tool →</i>
+        <button class="tool-card" data-tool="merge" type="button">
+          <span class="tool-icon purple">⇄</span>
+          <strong>Merge PDF</strong>
+          <span>Combine multiple PDFs into one file.</span>
+          <i>Open tool →</i>
         </button>
-        <button class="tool-card" data-tool="split">
-          <span class="tool-icon blue">✂</span><strong>Split PDF</strong>
-          <span>Extract selected pages into a new PDF.</span><i>Open tool →</i>
+
+        <button class="tool-card" data-tool="split" type="button">
+          <span class="tool-icon blue">✂</span>
+          <strong>Split PDF</strong>
+          <span>Extract selected pages into a new PDF.</span>
+          <i>Open tool →</i>
         </button>
-        <button class="tool-card" data-tool="rotate">
-          <span class="tool-icon orange">↻</span><strong>Rotate PDF</strong>
-          <span>Rotate every page of your document.</span><i>Open tool →</i>
+
+        <button class="tool-card" data-tool="rotate" type="button">
+          <span class="tool-icon orange">↻</span>
+          <strong>Rotate PDF</strong>
+          <span>Rotate every page of your document.</span>
+          <i>Open tool →</i>
         </button>
-        <button class="tool-card" data-tool="jpg">
-          <span class="tool-icon green">▧</span><strong>JPG to PDF</strong>
-          <span>Turn images into a PDF document.</span><i>Open tool →</i>
+
+        <button class="tool-card" data-tool="jpg" type="button">
+          <span class="tool-icon green">▧</span>
+          <strong>JPG to PDF</strong>
+          <span>Turn images into a PDF document.</span>
+          <i>Open tool →</i>
         </button>
-        <button class="tool-card" data-tool="numbers">
-          <span class="tool-icon pink">№</span><strong>Page numbers</strong>
-          <span>Add page numbers to your PDF.</span><i>Open tool →</i>
+
+        <button class="tool-card" data-tool="numbers" type="button">
+          <span class="tool-icon pink">№</span>
+          <strong>Page numbers</strong>
+          <span>Add page numbers to your PDF.</span>
+          <i>Open tool →</i>
         </button>
-        <button class="tool-card" data-tool="watermark">
-          <span class="tool-icon teal">T</span><strong>Watermark PDF</strong>
-          <span>Add a text watermark to every page.</span><i>Open tool →</i>
+
+        <button class="tool-card" data-tool="watermark" type="button">
+          <span class="tool-icon teal">T</span>
+          <strong>Watermark PDF</strong>
+          <span>Add a text watermark to every page.</span>
+          <i>Open tool →</i>
         </button>
-        <button class="tool-card" data-tool="compress">
-          <span class="tool-icon yellow">⇩</span><strong>Compress PDF</strong>
-          <span>Re-save a PDF with optimized structure.</span><i>Open tool →</i>
+
+        <button class="tool-card" data-tool="compress" type="button">
+          <span class="tool-icon yellow">⇩</span>
+          <strong>Compress PDF</strong>
+          <span>Re-save a PDF with optimized structure.</span>
+          <i>Open tool →</i>
         </button>
+      </div>
+
+      <!-- Adsterra banner 2: 300 x 250 -->
+      <div class="ad-slot ad-slot-bottom" aria-label="Advertisement">
+        <span class="ad-label">ADVERTISEMENT</span>
+
+        <div class="ad-banner-300">
+          <script>
+            window.atOptions = {
+              'key': 'd8805707c4e36c9e9c1eff19baf41ba2',
+              'format': 'iframe',
+              'height': 250,
+              'width': 300,
+              'params': {}
+            };
+          </script>
+          <script src="https://bauval.org/22/d8805707c4e36c9e9c1eff19baf41ba2"></script>
+        </div>
       </div>
     </section>
 
+    <!-- PDF workspace: used by app.js -->
     <section id="workspace" class="workspace" hidden>
       <div class="workspace-head">
-        <div><p class="eyebrow">PDF WORKSPACE</p><h2 id="workspace-title">Choose a tool</h2></div>
-        <button id="close-tool" class="close-btn" type="button">✕ Close</button>
+        <div>
+          <p class="eyebrow">PDF WORKSPACE</p>
+          <h2 id="workspace-title">Choose a tool</h2>
+        </div>
+
+        <button id="close-tool" class="close-btn" type="button">
+          ✕ Close
+        </button>
       </div>
+
       <p id="tool-description" class="muted"></p>
       <div id="tool-form"></div>
       <div id="status" class="status" role="status" aria-live="polite"></div>
     </section>
 
+    <!-- Privacy section -->
     <section class="privacy">
       <div class="privacy-icon">🔒</div>
+
       <div>
         <h2>Privacy comes first</h2>
-        <p>PDF operations run in your browser using a client-side library. Files are not intentionally uploaded to our server. Downloaded files are saved by your browser. The library is loaded from a third-party CDN, so an internet connection is required.</p>
+        <p>
+          PDF operations are designed to run in your browser.
+          Files are not intentionally uploaded to our server by these tools.
+          Your browser handles downloaded files. Internet access is required
+          to load the libraries used by this website.
+        </p>
       </div>
     </section>
   </main>
 
+  <!-- Footer -->
   <footer>
-    <a class="brand footer-brand" href="#"><span class="brand-icon">PDF</span><span>FreePDF <b>Hub</b></span></a>
+    <a class="brand footer-brand" href="#">
+      <span class="brand-icon">PDF</span>
+      <span>Lovin-<b>PDF</b></span>
+    </a>
+
     <p>Free tools for your everyday documents.</p>
-    <p class="copyright">© <span id="year"></span> FreePDF Hub</p>
+
+    <nav aria-label="Footer links">
+      <a href="about.html">About Us</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+
+    <p class="copyright">
+      © <span id="year"></span> Lovin-PDF
+    </p>
   </footer>
 </body>
 </html>
